@@ -29,6 +29,6 @@ public class BirthdayService {
     public void sendGreetings(LocalDate localDate) {
         logger.debug("sendGreetings({})", localDate);
         employeeRepository.findByBirthday(localDate)
-                .forEach(person -> emailService.sendBirthdayWish(person));
+                .forEach(emailService::sendBirthdayWish);
     }
 }
