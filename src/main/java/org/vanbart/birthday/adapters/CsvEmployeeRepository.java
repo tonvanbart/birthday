@@ -2,13 +2,13 @@ package org.vanbart.birthday.adapters;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.vanbart.birthday.core.EmployeeRepository;
 import org.vanbart.birthday.core.Person;
 import org.vanbart.birthday.util.Tuple;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -23,6 +23,7 @@ import static java.time.LocalDate.parse;
  * @since 14/09/2017.
  */
 @Component
+@Profile("default")
 public class CsvEmployeeRepository implements EmployeeRepository {
 
     private static final String FILENAME = "employees.csv";
