@@ -41,21 +41,21 @@ public class CsvEmployeeRepository implements EmployeeRepository {
         }
 
         try {
-            Path path = Paths.get(resource.toURI());
-            return Files.readAllLines(path).stream()
-                    .skip(1)
-                    .map(line -> line.split(","))
-                    .map(parts -> new Tuple<>(parts[0].trim(), parts[1].trim(),
-                            parse(parts[2].trim()), parts[3].trim()))
-                    .map(tuple -> new Person(tuple.t, tuple.u, tuple.v, tuple.w))
-                    .filter(person -> person.birthday.equals(localDate));
-
-        } catch (URISyntaxException e) {
-            logger.error("Failed to resolve '{}'", FILENAME, e);
-            return Stream.empty();
-        } catch (IOException e) {
-            logger.error("Failed to read '{}'", FILENAME, e);
+            return returnPersonsFromCsv(localDate, resource);
+        } catch (URISyntaxException | IOException e) {
+            logger.error("Error reading '{}'", FILENAME, e);
             return Stream.empty();
         }
+    }
+
+    private Stream<Person> returnPersonsFromCsv(LocalDate localDate, URL resource) throws URISyntaxException, IOException {
+        Path path = Paths.get(resource.toURI());
+        return Files.readAllLines(path).stream()
+                .skip(1)
+                .map(line -> line.split(","))
+                .map(parts -> new Tuple<>(parts[0].trim(), parts[1].trim(),
+                        parse(parts[2].trim()), parts[3].trim()))
+                .map(tuple -> new Person(tuple.t, tuple.u, tuple.v, tuple.w))
+                .filter(person -> person.birthday.equals(localDate));
     }
 }
