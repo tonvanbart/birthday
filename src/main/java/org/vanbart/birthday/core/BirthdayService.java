@@ -21,7 +21,7 @@ public class BirthdayService {
 
     @Autowired
     public BirthdayService(EmployeeRepository employeeRepository, EmailService emailService) {
-        logger.debug("BirthdayService()");
+        logger.debug("BirthdayService({},{})", employeeRepository, emailService);
         this.employeeRepository = employeeRepository;
         this.emailService = emailService;
     }
