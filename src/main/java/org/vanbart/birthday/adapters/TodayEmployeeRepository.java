@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.stream.Stream;
 
 /**
- * Implementation which returns one single Person, whose birthday is today.
+ * Implementation which hard coded Persons, whose birthday is today.
  */
 @Component
 @Profile("today")
