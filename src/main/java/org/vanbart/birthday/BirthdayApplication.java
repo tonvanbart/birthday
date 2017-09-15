@@ -18,9 +18,9 @@ public class BirthdayApplication implements CommandLineRunner {
     @Autowired
     BirthdayService birthdayService;
 
-	public static void main(String[] args) {
-		SpringApplication.run(BirthdayApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BirthdayApplication.class, args);
+    }
 
     @Override
     public void run(String... strings) throws Exception {
